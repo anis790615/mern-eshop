@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import data from "../data";
+import { listProducts } from "../actions/productActions";
 
 function HomeScreen() {
-  return (
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { products, error, loading } = productList;
+  useEffect(() => {
+    dispatch(listProducts());
+    return () => {};
+  }, [dispatch]);
+  return loading ? (
+    <div>Loading...</div>
+  ) : error ? (
+    <div>{error}</div>
+  ) : (
     <ul className="products">
-      {data.products.map((product) => (
+      {products.map((product) => (
         <li key={product._id}>
           <div className="product">
             <Link to={`/product/${product._id}`}>

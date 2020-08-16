@@ -9,6 +9,7 @@ export default {
       price: 399.99,
       rating: 4.8,
       numReviews: 10,
+      countInStock: 6,
     },
     {
       _id: "1",
@@ -19,6 +20,7 @@ export default {
       price: 349.99,
       rating: 5,
       numReviews: 12,
+      countInStock: 3,
     },
     {
       _id: "2",
@@ -29,6 +31,7 @@ export default {
       price: 59.99,
       rating: 4.8,
       numReviews: 30,
+      countInStock: 0,
     },
   ],
 };

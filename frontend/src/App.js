@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
+import CartScreen from "./screens/CartScreen";
 
 import "./App.css";
 
@@ -23,7 +24,7 @@ function App() {
           </div>
           <div className="header-links">
             <a href="signin.html">Sign In</a>
-            <a href="cart.html">Cart</a>
+            <a href="/cart">Cart</a>
           </div>
         </header>
         <aside className="sidebar">
@@ -42,8 +43,9 @@ function App() {
         </aside>
         <main className="main">
           <div className="content">
-            <Route path="/product/:id" exact component={ProductScreen}></Route>
-            <Route path="/" exact component={HomeScreen}></Route>
+            <Route path="/product/:id" component={ProductScreen} />
+            <Route path="/cart/:id?" component={CartScreen} />
+            <Route path="/" exact component={HomeScreen} />
           </div>
         </main>
         <footer className="footer">All rights Reserved</footer>
