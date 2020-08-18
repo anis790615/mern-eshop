@@ -1,12 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
-
-import "./App.css";
+import SigninScreen from "./screens/SigninScreen";
+import { useSelector } from "react-redux";
+import RegisterScreen from "./screens/RegisterScreen";
+import ProductsScreen from "./screens/ProductsScreen";
 
 function App() {
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
   };
@@ -23,8 +27,12 @@ function App() {
             <Link to="/">AmazonClone</Link>
           </div>
           <div className="header-links">
-            <a href="signin.html">Sign In</a>
-            <a href="/cart">Cart</a>
+            <Link to="/cart">Cart</Link>
+            {userInfo ? (
+              <Link to="/profile">{userInfo.name}</Link>
+            ) : (
+              <Link to="/signin">Sign In</Link>
+            )}
           </div>
         </header>
         <aside className="sidebar">
@@ -43,9 +51,14 @@ function App() {
         </aside>
         <main className="main">
           <div className="content">
-            <Route path="/product/:id" component={ProductScreen} />
-            <Route path="/cart/:id?" component={CartScreen} />
-            <Route path="/" exact component={HomeScreen} />
+            <Switch>
+              <Route exact path="/signin" component={SigninScreen} />
+              <Route exact path="/register" component={RegisterScreen} />
+              <Route exact path="/product/:id" component={ProductScreen} />
+              <Route exact path="/products" component={ProductsScreen} />
+              <Route exact path="/cart/:id?" component={CartScreen} />
+              <Route exact path="/" component={HomeScreen} />
+            </Switch>
           </div>
         </main>
         <footer className="footer">All rights Reserved</footer>

@@ -1,19 +1,19 @@
 import express from "express";
-import data from "./data";
+import { connectDB } from "./util/connectDB";
+import config from "./config";
+import productRoutes from "./routes/product-routes";
+import userRoutes from "./routes/user-routes";
 
+const PORT = process.env.PORT || 3300;
 const app = express();
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+//Routes
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
-app.get("/api/products", (req, res) => {
-  res.send(data.products);
-});
-app.get("/api/products/:id", (req, res) => {
-  const productId = req.params.id;
-  const product = data.products.find((product) => product._id === productId);
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ msg: "Product not found" });
-  }
-});
-
-app.listen(3300, () => console.log("Server Started at port 3300"));
+// Start Server
+app.listen(PORT, () => console.log(`Server Started at port ${PORT}`));
+// Start DB
+connectDB(config);

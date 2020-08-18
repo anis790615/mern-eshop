@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
-import { addToCart, removeFromCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../redux-state/actions/cartActions";
 import { useDispatch, useSelector } from "react-redux";
 
 function CartScreen() {

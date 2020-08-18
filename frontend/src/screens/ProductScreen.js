@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { detailsProduct } from "../actions/productActions";
+import { detailsProduct } from "../redux-state/actions/productActions";
 
 function ProductScreen() {
   const { push } = useHistory();
