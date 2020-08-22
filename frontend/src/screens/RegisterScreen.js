@@ -12,6 +12,7 @@ function RegisterScreen() {
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, userInfo } = userRegister;
   const dispatch = useDispatch();
+  const redirect = useHistory().location.search.split("=")[1] || "/";
 
   // Functions
   const handleSubmit = (e) => {
@@ -21,7 +22,7 @@ function RegisterScreen() {
   // Side Effects
   useEffect(() => {
     if (userInfo) {
-      push("/");
+      push(redirect);
     }
     return () => {};
   }, [userInfo, push]);
@@ -79,7 +80,10 @@ function RegisterScreen() {
           </li>
           <li>
             <span>Already have an account? </span>
-            <Link to="/signin" className="button secondary">
+            <Link
+              to={redirect === "/" ? "signin" : `register?redirect=${redirect}`}
+              className="button secondary"
+            >
               Sign-in
             </Link>
           </li>

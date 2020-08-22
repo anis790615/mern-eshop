@@ -19,7 +19,7 @@ export const isAuthenticated = (req, res, next) => {
     const extractedToken = token.slice(7, token.length);
     jwt.verify(extractedToken, config.tokenSecret, (error, decode) => {
       if (error) {
-        return res.status(401).send({ msg: "Invialid token" });
+        return res.status(401).send({ msg: "Invalid token" });
       }
       req.user = decode;
       next();

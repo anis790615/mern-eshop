@@ -22,6 +22,9 @@ a:hover {
   color: darkgoldenrod;
   /* text-shadow: 1px 2px 1px rgb(34, 71, 71); */
 }
+.full-width {
+  width: 100%;
+}
 
 ul {
   list-style: none;
@@ -380,4 +383,88 @@ tr {
 }
 tbody > tr:nth-child(odd) {
   background: gainsboro;
+}
+
+/* Checkout steps */
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  width: 50rem;
+  margin: 3rem auto 0 auto;
+}
+.checkout-steps > div {
+  text-align: center;
+  position: relative;
+  border-top: 0.3rem solid grey;
+  color: grey;
+  flex: 1 1;
+  padding: 1rem;
+}
+.checkout-steps > div.active:before {
+  z-index: 2;
+  content: "";
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: -12.5px;
+  right: -12.5px;
+  background: teal;
+  border-radius: 50%;
+}
+.checkout-steps > div.active {
+  border-top: 0.3rem solid teal;
+  color: teal;
+}
+
+/* Place order */
+.placeorder {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  justify-content: space-between;
+}
+.placeorder-info {
+  flex: 3 1 60rem;
+}
+.placeorder-action {
+  flex: 1 1 15rem;
+  border: 0.1rem solid rgba(117, 158, 158, 0.48);
+  box-shadow: 0 1px 3px rgba(75, 165, 165, 0.24),
+    0 1px 2px rgba(117, 158, 158, 0.48);
+  padding: 1.5rem;
+  background: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.placeorder-info > div {
+  border: 0.1rem solid rgba(117, 158, 158, 0.48);
+  border-radius: 0.5rem;
+  background-color: #fcfcfc;
+  padding: 1rem;
+}
+.placeorder-info > div:first-child {
+  margin-top: 0;
+}
+.placeorder-action > ul {
+  width: 100;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.placeorder-action > ul > li {
+  display: flex;
+
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.placeorder-action > ul > li:last-child {
+  font-size: 2rem;
+  color: darkgoldenrod;
+  font-weight: bold;
+  margin-top: auto;
+}
+.placeorder-action-payment > div {
+  width: 100%;
 }

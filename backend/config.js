@@ -6,5 +6,6 @@ const config = {
   dbPassword: process.env.DB_PASSWORD,
   dbName: process.env.DB_NAME,
   tokenSecret: process.env.JWT_SECRET,
+  paypalId: process.env.PAYPAL_CLIENT_ID,
 };
 export default config;

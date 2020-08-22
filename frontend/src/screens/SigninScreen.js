@@ -10,6 +10,7 @@ function SigninScreen() {
   const userSignin = useSelector((state) => state.userSignin);
   const { loading, error, userInfo } = userSignin;
   const dispatch = useDispatch();
+  const redirect = useHistory().location.search.split("=")[1] || "/";
 
   // Functions
   const handleSubmit = (e) => {
@@ -19,7 +20,7 @@ function SigninScreen() {
   // Side Effects
   useEffect(() => {
     if (userInfo) {
-      push("/");
+      push(redirect);
     }
     return () => {};
   }, [userInfo, push]);
@@ -59,7 +60,12 @@ function SigninScreen() {
           </li>
           <li>
             <span>Don't have an account? </span>
-            <Link to="/register" className="button secondary">
+            <Link
+              to={
+                redirect === "/" ? "register" : `register?redirect=${redirect}`
+              }
+              className="button secondary"
+            >
               Create new account
             </Link>
           </li>

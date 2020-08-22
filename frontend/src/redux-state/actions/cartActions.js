@@ -1,6 +1,8 @@
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
+  CART_SAVE_SHIPPING,
+  CART_SAVE_PAYMENT,
 } from "../action-types/cartActionTypes";
 import Cookie from "js-cookie";
 import axios from "axios";
@@ -32,4 +34,10 @@ const removeFromCart = (productId) => (dispatch, getState) => {
   } = getState();
   Cookie.set("cartItems", JSON.stringify(cartItems));
 };
-export { addToCart, removeFromCart };
+const saveShipping = (shippingData) => (dispatch) => {
+  dispatch({ type: CART_SAVE_SHIPPING, payload: shippingData });
+};
+const savePayment = (paymentMethod) => (dispatch) => {
+  dispatch({ type: CART_SAVE_PAYMENT, payload: paymentMethod });
+};
+export { addToCart, removeFromCart, saveShipping, savePayment };
